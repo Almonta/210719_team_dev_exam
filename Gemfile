@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.3'
 
 # Core
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -73,4 +73,4 @@ group :test do
   gem 'timecop'
 end
 
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data'#, platforms: %i[mingw mswin x64_mingw jruby]
