@@ -254,7 +254,7 @@ ja:
       edit_profile: 'プロフィールを編集'
       team_you_belong_to: '所属しているチーム'
       posted_articles: '投稿した記事一覧'
-      You have successfully change the authority: '権限移動に成功しました。'
+      change the authority: '権限移動に成功しました。'
     button:
       submit: '投稿'
       edit: '編集'

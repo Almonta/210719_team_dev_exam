@@ -58,7 +58,7 @@ class TeamsController < ApplicationController
     @user = User.find(@team.owner_id)
     # binding.irb
     ChangeAuthorityMailer.change_authority_mail(@user).deliver
-    redirect_to team_path, notice: 'You have successfully change the authority'
+    redirect_to team_path, notice: I18n.t('views.messages.change_the_authority')
   end
 
   private
@@ -83,6 +83,4 @@ class TeamsController < ApplicationController
     end
   end
   
-  # def change_authority
-    
 end
