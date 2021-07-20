@@ -56,6 +56,7 @@ class TeamsController < ApplicationController
   def change_authority
     @team.update(owner_id: params[:owner_id])
     @user = User.find(@team.owner_id)
+    # binding.irb
     ChangeAuthorityMailer.change_authority_mail(@user).deliver
     redirect_to team_path, notice: 'You have successfully change the authority'
   end
