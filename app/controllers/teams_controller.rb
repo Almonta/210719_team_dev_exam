@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: %i[show edit update destroy]
   before_action :destroy_authority, only: [:destroy]
-  before_action :edit_authority, only: [:edit]
+  before_action :edit_authority, only: %i[edit update]
 
   def index
     @teams = Team.all
@@ -18,6 +18,7 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    # binding.irb
   end
 
   def create
@@ -67,7 +68,7 @@ class TeamsController < ApplicationController
   end
   
   def edit_authority
-    unless @team.owner.id == @team.owner_id
+    unless @team.owner.id == current_user.id
       redirect_to teams_url
     end
   end
