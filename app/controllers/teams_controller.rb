@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy change_authority]
   before_action :destroy_authority, only: [:destroy]
   before_action :edit_authority, only: %i[edit update]
 
@@ -52,6 +52,14 @@ class TeamsController < ApplicationController
   def dashboard
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
   end
+  
+  def change_authority
+    @team.update(owner_id: params[:owner_id])
+    @user = User.find(@team.owner_id)
+    # binding.irb
+    ChangeAuthorityMailer.change_authority_mail(@user).deliver
+    redirect_to team_path, notice: 'You have successfully change the authority'
+  end
 
   private
 
@@ -75,4 +83,6 @@ class TeamsController < ApplicationController
     end
   end
   
+  # def change_authority
+    
 end
