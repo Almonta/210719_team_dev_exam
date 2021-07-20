@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
 
   def show
     @working_team = @team
+    # binding.irb
     change_keep_team(current_user, @team)
   end
 
@@ -44,6 +45,7 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
+    # binding.irb
     redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
   end
 
