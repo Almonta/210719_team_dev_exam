@@ -62,7 +62,7 @@ class TeamsController < ApplicationController
   end
   
   def destroy_authority
-    unless (@team.owner.id == @team.owner_id) || current_user
+    unless (@team.owner.id == @team.owner_id) || (current_user.id = @team.assign.id)
       redirect_to teams_url
     end
   end
