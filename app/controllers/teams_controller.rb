@@ -52,7 +52,7 @@ class TeamsController < ApplicationController
   def dashboard
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
   end
-  
+
   def change_authority
     @team.update(owner_id: params[:owner_id])
     @user = User.find(@team.owner_id)
@@ -70,17 +70,13 @@ class TeamsController < ApplicationController
   def team_params
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
   end
-  
+
   def destroy_authority
-    unless (@team.owner.id == @team.owner_id) || (current_user.id = @team.assign.id)
-      redirect_to teams_url
-    end
+    redirect_to teams_url unless (@team.owner.id == @team.owner_id) || (current_user.id = @team.assign.id)
   end
-  
+
   def edit_authority
-    unless @team.owner.id == current_user.id
-      redirect_to teams_url
-    end
+    redirect_to teams_url unless @team.owner.id == current_user.id
   end
-  
+
 end
