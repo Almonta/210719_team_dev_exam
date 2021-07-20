@@ -38,8 +38,9 @@
               </p>
             </a>
               <div class="col-lg-2" >
-                 <%# if agenda.user_id == current_user.id || agenda.team.owner_id == current_user.id %>
+                <% if agenda.user_id == current_user.id || agenda.team.owner_id == current_user.id %>
                 <p><%= link_to I18n.t('views.button.delete'), agenda_path(agenda), method: :delete, class: 'btn btn-xs btn-danger' %></p>
+                <% end %>
               </div>
             <ul class="nav nav-treeview" style="display: block; clear: both;">
               <% agenda.articles.each do |article| %>

@@ -23,8 +23,9 @@ class AgendasController < ApplicationController
   
   def destroy
     @agenda = Agenda.find(params[:id])
-    binding.irb
+    # binding.irb
     @agenda.destroy
+    AgendaDeleteNoticeMailer.agenda_delete_notice_mail(@agenda).deliver
     redirect_to dashboard_path, notice: I18n.t('views.messages.delete_team')
   end
 
