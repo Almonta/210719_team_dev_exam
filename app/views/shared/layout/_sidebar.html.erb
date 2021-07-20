@@ -26,18 +26,21 @@
       </div>
     </div>
     <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <nav class="mt-2 container">
+      <ul class="nav nav-pills nav-sidebar flex-column row" data-widget="treeview" role="menu" data-accordion="false">
         <% @working_team.agendas.each do |agenda| %>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link col-lg-8", style="margin-right:8px; float: left;">
               <i class="fa fa-circle-o nav-icon"></i>
               <p>
                 <%= agenda.title %>
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: block;">
+              <div class="col-lg-4" >
+                <p><%= link_to '削除', dashboard_path, method: :delete, class: 'btn btn-md btn-danger' %></p>
+              </div>
+            <ul class="nav nav-treeview" style="display: block; clear: both;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">
                   <%= link_to article_path(article), class: 'nav-link' do %>
